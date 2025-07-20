@@ -1,0 +1,126 @@
+-- *****************************************************************
+-- VTSS-SYSINFO-MIB:  Microsemi ENT private MIB
+-- ****************************************************************
+
+VTSS-SYSINFO-MIB DEFINITIONS ::= BEGIN
+
+IMPORTS
+    NOTIFICATION-GROUP, MODULE-COMPLIANCE, OBJECT-GROUP FROM SNMPv2-CONF
+    NOTIFICATION-TYPE, MODULE-IDENTITY, OBJECT-TYPE FROM SNMPv2-SMI
+    TEXTUAL-CONVENTION FROM SNMPv2-TC
+    vtssSwitchMgmt FROM VTSS-SMI
+    Integer32 FROM SNMPv2-SMI
+    Unsigned32 FROM SNMPv2-SMI
+    MacAddress FROM SNMPv2-TC
+    TruthValue FROM SNMPv2-TC
+    VTSSDisplayString FROM VTSS-TC
+    ;
+
+vtssSysInfoMib MODULE-IDENTITY
+    LAST-UPDATED "201602170000Z"
+    ORGANIZATION
+        "Microsemi Corporation"
+    CONTACT-INFO
+        "Application support: http://www.microchip.com/support"
+    DESCRIPTION
+        "This is a private version of SysUtil"
+    REVISION    "201602170000Z"
+    DESCRIPTION
+        "Add system temperature monitor"
+    REVISION    "201602150000Z"
+    DESCRIPTION
+        "Add board serial and type to board info"
+    REVISION    "201511020000Z"
+    DESCRIPTION
+        "Add system time config"
+    REVISION    "201510300000Z"
+    DESCRIPTION
+        "Add board info"
+    REVISION    "201510200000Z"
+    DESCRIPTION
+        "Add system config info"
+    REVISION    "201510150000Z"
+    DESCRIPTION
+        "Add system uptime status"
+    REVISION    "201411110000Z"
+    DESCRIPTION
+        "Add system LED status"
+    REVISION    "201410100000Z"
+    DESCRIPTION
+        "Editorial changes"
+    REVISION    "201407010000Z"
+    DESCRIPTION
+        "Initial version"
+    ::= { vtssSwitchMgmt 166 }
+
+vtssSysInfoMibObjects OBJECT IDENTIFIER
+    ::= { vtssSysInfoMib 1 }
+	
+vtssSysInfoMonitor OBJECT IDENTIFIER
+    ::= { vtssSysInfoMibObjects 1 }
+
+vtssSysInfoAvailableFlashPercentage OBJECT-TYPE
+    SYNTAX      Integer32
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+        "Available flash percentage(0-100)."
+    ::= { vtssSysInfoMonitor 1 }
+
+vtssSysInfoAvailableFlashKb OBJECT-TYPE
+    SYNTAX      Integer32
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+        "Available flash size(Kbit)."
+    ::= { vtssSysInfoMonitor 2 }
+
+vtssSysInfoDeviceUptime OBJECT-TYPE
+    SYNTAX      Integer32
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+        "Device uptime."
+    ::= { vtssSysInfoMonitor 3 }
+
+vtssSysInfoFreeMemPercentage OBJECT-TYPE
+    SYNTAX      Integer32
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+        "Free memory percentage(0-100)."
+    ::= { vtssSysInfoMonitor 4 }
+	
+vtssSysInfoFreeMemKB OBJECT-TYPE
+    SYNTAX      Integer32
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+        "Free memory size(Kbit)."
+    ::= { vtssSysInfoMonitor 5 }
+
+vtssSysInfoAverageCpuPercentage OBJECT-TYPE
+    SYNTAX      Integer32
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+        "Max cpu percentage(0-100)."
+    ::= { vtssSysInfoMonitor 6 }
+	
+vtssSysInfoMaxCpuPercentage OBJECT-TYPE
+    SYNTAX      Integer32
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+        "Max cpu percentage(0-100)."
+    ::= { vtssSysInfoMonitor 7 }
+	
+vtssSysInfoMinCpuPercentage OBJECT-TYPE
+    SYNTAX      Integer32
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+        "Min cpu percentage(0-100)."
+    ::= { vtssSysInfoMonitor 8 }
+
+END
